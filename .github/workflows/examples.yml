@@ -1,0 +1,47 @@
+# Every example must run and print exactly what its recorded .out file says — and
+# every lesson page's generated output block must match that run.
+#
+#   examples/*_js.js, *.mjs, *.cjs   Node 24 (LTS), from actions/setup-node
+#   examples/*_ts.ts                 type-checked by the pinned tsc (npm ci), then
+#                                    run by Node, which erases the types itself
+#   examples/*_tserror.ts            must fail the type check; the key is tsc's output
+#   examples/*_sh.sh                 bash drivers — exit statuses, stderr, Node flags
+#
+# Both machines on purpose: two operating systems and two CPU architectures
+# (x86-64 and arm64). A key is only what both agree on.
+
+name: examples
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install the pinned TypeScript compiler
+        run: npm ci
+      - name: Show toolchain
+        run: |
+          node --version
+          npx --no-install tsc --version
+          python3 --version
+          bash --version | head -1
+          uname -sm
+      - name: Run every example and check it against its answer key
+        run: python3 tools/run_examples.py --check
+      - name: Check that every external link is marked as external
+        run: python3 tools/check_link_style.py
+      - name: Check every page's shape and the generated indexes
+        run: python3 tools/check_pages.py

@@ -1,0 +1,8 @@
+page_check_total_tserror.ts:7:20 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+7 console.log(total(["1999", 250, 5]));
+                     ~~~~~~
+
+
+Found 1 error in page_check_total_tserror.ts:7
+

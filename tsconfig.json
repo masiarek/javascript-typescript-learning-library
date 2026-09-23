@@ -1,0 +1,35 @@
+// Type-checks every TypeScript example in the library. Nothing is emitted: Node
+// runs a .ts file itself, by erasing its types, so tsc's only job here is the
+// check. tools/run_examples.py runs `tsc -p tsconfig.json` before any example,
+// and CI runs it on both machines.
+//
+// An example whose stem ends in _tserror is excluded: it exists to FAIL the
+// check, and the runner records tsc's diagnostics as its answer key instead.
+{
+  "compilerOptions": {
+    // tsc accepts everything in the current ECMAScript draft; running the
+    // example on Node 24 is what shows whether Node has it (Temporal, for one,
+    // type-checks here and is still missing at run time).
+    "target": "esnext",
+    "lib": ["esnext"],
+    "module": "nodenext",
+    "types": ["node"],
+    "strict": true,
+    "noEmit": true,
+    // Only what Node can strip: no enums, no namespaces with values, no
+    // parameter properties. A page about those uses a _tserror example.
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true
+  },
+  "include": ["**/examples/*.ts", "**/examples/*.mts", "**/examples/*.cts"],
+  "exclude": [
+    "node_modules",
+    "site",
+    ".claude",
+    "**/*_tserror.ts",
+    "**/*_tserror.mts",
+    "**/*_tserror.cts"
+  ]
+}

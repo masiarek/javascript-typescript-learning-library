@@ -1,0 +1,17 @@
+{
+  "name": "javascript-typescript-learning-library",
+  "private": true,
+  "description": "JavaScript and TypeScript, one runnable page at a time. Not a package: this file pins the TypeScript compiler the examples are checked with, and makes every .js and .ts example an ES module.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "examples": "python3 tools/run_examples.py --check",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "typescript": "7.0.2"
+  }
+}
