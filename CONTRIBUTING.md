@@ -149,7 +149,13 @@ CI's *Show toolchain* step prints what each runner has. Add a row when CI finds 
 | `eslint` | 10.11.0, from `npm ci` | 10.11.0, from `npm ci` |
 | `bash` | 5.x | 3.2 |
 
-The first keys were recorded on an x86-64 Mac with Node 25.2.1 (Homebrew's `node`; the runner skips an older `node` on `PATH` and finds a 24+ itself). Where Node 24 and a newer Node print differently, CI's Node 24 is the reference: record that key with Node 24 (`brew install node@24`, then `NODE=$(brew --prefix node@24)/bin/node`).
+The first keys were recorded on an x86-64 Mac with Node 25.2.1 (Homebrew's `node`; the runner skips an older `node` on `PATH` and finds a 24+ itself). Where Node 24 and a newer Node print differently, CI's Node 24 is the reference: record that key with Node 24 (`brew install node@24`, then `NODE=$(brew --prefix node@24)/bin/node`). Before committing, check every `_js`, `_ts` and `.sh` key against Node 24 in Docker — the `node:24-slim` image is cached on this Mac (the `_tserror` keys need not be: the pinned tsc in `node_modules` is a macOS binary, and CI runs its Linux twin):
+
+```bash
+docker run --rm --ulimit fsize=104857600 -v "$PWD:/w:ro" -w /w/02_Values_and_Types/bigint/examples node:24-slim node bigint_arithmetic_js.js | diff - bigint_arithmetic_js.out && echo same
+```
+
+For a driver, run `bash <file>.sh` in the container instead; ESLint runs there too, with `/w/node_modules/.bin` on `PATH`.
 
 ## Links
 
