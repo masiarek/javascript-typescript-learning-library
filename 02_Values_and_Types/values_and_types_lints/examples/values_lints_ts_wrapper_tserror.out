@@ -1,0 +1,9 @@
+values_lints_ts_wrapper_tserror.ts:2:7 - error TS2322: Type 'String' is not assignable to type 'string'.
+  'string' is a primitive, but 'String' is a wrapper object. Prefer using 'string' when possible.
+
+2 const currency: string = new String("EUR");
+        ~~~~~~~~
+
+
+Found 1 error in values_lints_ts_wrapper_tserror.ts:2
+

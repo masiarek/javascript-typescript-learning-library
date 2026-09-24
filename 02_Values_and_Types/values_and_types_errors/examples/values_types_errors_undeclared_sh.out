@@ -1,0 +1,7 @@
+$ cat save_setting.mjs
+// The same file runs in a web page and in Node: where should a setting go?
+const store = window === undefined ? "a file" : "localStorage";
+console.log(`saving to ${store}`);
+$ node save_setting.mjs
+ReferenceError: window is not defined
+exit status: 1

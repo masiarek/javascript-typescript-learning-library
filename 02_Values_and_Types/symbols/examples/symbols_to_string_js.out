@@ -1,0 +1,11 @@
+String(audit)                    "Symbol(audit)"
+audit.toString()                 "Symbol(audit)"
+audit.description                "audit"
+Symbol().description             undefined
+`${audit}`                       TypeError: Cannot convert a Symbol value to a string
+"" + audit                       TypeError: Cannot convert a Symbol value to a string
++audit                           TypeError: Cannot convert a Symbol value to a number
+audit === other                  false
+String(audit) === String(other)  true
+keys when converted by String()  1
+keys when kept as symbols        2

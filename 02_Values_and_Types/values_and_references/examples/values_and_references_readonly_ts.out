@@ -1,0 +1,3 @@
+view.status            paid
+plan.tier              free
+Object.isFrozen(plan)  false

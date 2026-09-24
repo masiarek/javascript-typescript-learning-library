@@ -1,0 +1,13 @@
+values_resources_possibly_undefined_tserror.ts:6:10 - error TS18048: 'coupon' is possibly 'undefined'.
+
+6   return coupon.toUpperCase();
+           ~~~~~~
+
+values_resources_possibly_undefined_tserror.ts:9:7 - error TS2322: Type 'null' is not assignable to type 'void'.
+
+9 const noResult: void = null;
+        ~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: values_resources_possibly_undefined_tserror.ts:6
+

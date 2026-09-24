@@ -1,0 +1,4 @@
+first reads: A
+second reads: B
+JSON: {"id":"A-1001"}
+own keys: id, Symbol(cache), Symbol(cache)

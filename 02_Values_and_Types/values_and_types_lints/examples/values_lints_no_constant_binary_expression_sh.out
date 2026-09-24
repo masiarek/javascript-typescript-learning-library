@@ -1,0 +1,16 @@
+$ node values_lints_no_constant_binary_expression_bad_js.js
+order 1: has items
+order 2: has items
+$ eslint --no-config-lookup --rule '{"no-constant-binary-expression": "error"}' values_lints_no_constant_binary_expression_bad_js.js
+
+values_lints_no_constant_binary_expression_bad_js.js
+  7:53  error  Unexpected comparison to newly constructed object. These two values can never be equal  no-constant-binary-expression
+
+✖ 1 problem (1 error, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_constant_binary_expression_good_js.js
+order 1: empty
+order 2: has items
+$ eslint --no-config-lookup --rule '{"no-constant-binary-expression": "error"}' values_lints_no_constant_binary_expression_good_js.js
+exit status: 0

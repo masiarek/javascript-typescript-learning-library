@@ -1,0 +1,17 @@
+$ eslint --no-config-lookup \
+    --rule '{"use-isnan": "error"}' \
+    --rule '{"no-compare-neg-zero": "error"}' \
+    --rule '{"valid-typeof": "error"}' \
+    --rule '{"eqeqeq": "error"}' \
+    --rule '{"no-undef-init": "error"}' \
+    --rule '{"no-shadow-restricted-names": "error"}' \
+    --rule '{"no-new-wrappers": "error"}' \
+    --rule '{"no-extend-native": "error"}' \
+    --rule '{"no-new-native-nonconstructor": "error"}' \
+    --rule '{"no-implicit-coercion": "error"}' \
+    --rule '{"no-loss-of-precision": "error"}' \
+    --rule '{"no-constant-binary-expression": "error"}' \
+    values_lints_unflagged_*_js.js
+exit status: 0
+$ tsc --ignoreConfig --noEmit --strict --allowJs --checkJs --module nodenext values_lints_unflagged_*_js.js
+exit status: 0

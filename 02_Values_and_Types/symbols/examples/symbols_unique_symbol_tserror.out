@@ -1,0 +1,13 @@
+symbols_unique_symbol_tserror.ts:7:13 - error TS2367: This comparison appears to be unintentional because the types 'typeof billingId' and 'typeof auditId' have no overlap.
+
+7 console.log(billingId === auditId);
+              ~~~~~~~~~~~~~~~~~~~~~
+
+symbols_unique_symbol_tserror.ts:11:13 - error TS2367: This comparison appears to be unintentional because the types 'typeof registeredA' and 'typeof registeredB' have no overlap.
+
+11 console.log(registeredA === registeredB);
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: symbols_unique_symbol_tserror.ts:7
+

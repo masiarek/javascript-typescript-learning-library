@@ -1,0 +1,2 @@
+isText("EUR"): false
+typeof "EUR": string

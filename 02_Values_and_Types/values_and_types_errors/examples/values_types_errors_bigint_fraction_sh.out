@@ -1,0 +1,8 @@
+$ cat price_to_cents.mjs
+// A price in dollars, turned into exact integer cents.
+const priceDollars = 19.99;
+const cents = BigInt(priceDollars * 100);
+console.log(`${cents}n`);
+$ node price_to_cents.mjs
+RangeError: The number 1998.9999999999998 cannot be converted to a BigInt because it is not an integer
+exit status: 1

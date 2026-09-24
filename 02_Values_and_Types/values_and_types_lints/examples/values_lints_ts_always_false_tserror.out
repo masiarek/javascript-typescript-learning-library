@@ -1,0 +1,17 @@
+values_lints_ts_always_false_tserror.ts:3:16 - error TS2845: This condition will always return 'false'.
+
+3 const failed = reading === NaN;
+                 ~~~~~~~~~~~~~~~
+
+  values_lints_ts_always_false_tserror.ts:3:16 - Did you mean 'Number.isNaN(reading)'?
+    3 const failed = reading === NaN;
+                     ~~~~~~~
+
+values_lints_ts_always_false_tserror.ts:6:15 - error TS2839: This condition will always return 'false' since JavaScript compares objects by reference, not value.
+
+6 const empty = items === [];
+                ~~~~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: values_lints_ts_always_false_tserror.ts:3
+

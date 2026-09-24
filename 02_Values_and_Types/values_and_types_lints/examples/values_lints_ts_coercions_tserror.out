@@ -1,0 +1,13 @@
+values_lints_ts_coercions_tserror.ts:3:22 - error TS2469: The '+' operator cannot be applied to type 'symbol'.
+
+3 const keyText = "" + orderKey;
+                       ~~~~~~~~
+
+values_lints_ts_coercions_tserror.ts:6:16 - error TS2736: Operator '+' cannot be applied to type 'bigint'.
+
+6 const count = +itemCount;
+                 ~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: values_lints_ts_coercions_tserror.ts:3
+

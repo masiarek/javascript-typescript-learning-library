@@ -1,0 +1,7 @@
+value                typeof    === null  Array.isArray  isPlainObject  toString tag
+null                 "object"  true      false          false          [object Null]
+[1999, 250]          "object"  false     true           false          [object Array]
+{ cents: 1999 }      "object"  false     false          true           [object Object]
+Object.create(null)  "object"  false     false          true           [object Object]
+new Order()          "object"  false     false          false          [object Object]
+new Date(0)          "object"  false     false          false          [object Date]

@@ -1,0 +1,9 @@
+markPaid(order);
+  order.status  paid
+cancel(order);
+  returned      cancelled
+  order.status  paid
+swap(left, right);
+  returned      2 1
+  left.id       1
+  right.id      2

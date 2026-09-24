@@ -1,0 +1,17 @@
+$ node values_lints_no_implicit_coercion_bad_js.js
+TypeError: Cannot convert a Symbol value to a string
+TypeError: Cannot convert a BigInt value to a number
+$ eslint --no-config-lookup --rule '{"no-implicit-coercion": "error"}' values_lints_no_implicit_coercion_bad_js.js
+
+values_lints_no_implicit_coercion_bad_js.js
+   6:19  error  Unexpected implicit coercion encountered. Use `String(orderKey)` instead   no-implicit-coercion
+  12:17  error  Unexpected implicit coercion encountered. Use `Number(itemCount)` instead  no-implicit-coercion
+
+✖ 2 problems (2 errors, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_implicit_coercion_good_js.js
+key: Symbol(order)
+count: 3
+$ eslint --no-config-lookup --rule '{"no-implicit-coercion": "error"}' values_lints_no_implicit_coercion_good_js.js
+exit status: 0

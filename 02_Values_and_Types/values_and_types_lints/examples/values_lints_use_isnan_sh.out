@@ -1,0 +1,14 @@
+$ node values_lints_use_isnan_bad_js.js
+failed readings: 0 of 4
+$ eslint --no-config-lookup --rule '{"use-isnan": "error"}' values_lints_use_isnan_bad_js.js
+
+values_lints_use_isnan_bad_js.js
+  3:45  error  Use the isNaN function to compare with NaN  use-isnan
+
+✖ 1 problem (1 error, 0 warnings)
+
+exit status: 1
+$ node values_lints_use_isnan_good_js.js
+failed readings: 2 of 4
+$ eslint --no-config-lookup --rule '{"use-isnan": "error"}' values_lints_use_isnan_good_js.js
+exit status: 0

@@ -1,0 +1,7 @@
+BigInt          result                        Number       result
+2n ** 64n       18446744073709551616n         2 ** 64      18446744073709552000
+2n ** 53n + 1n  9007199254740993n             2 ** 53 + 1  9007199254740992
+7n / 2n         3n                            7 / 2        3.5
+-7n / 2n        -3n                           -7 / 2       -3.5
+-7n % 2n        -1n                           -7 % 2       -1
+1n / 0n         RangeError: Division by zero  1 / 0        Infinity

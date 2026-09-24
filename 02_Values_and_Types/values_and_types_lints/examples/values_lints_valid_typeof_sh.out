@@ -1,0 +1,14 @@
+$ node values_lints_valid_typeof_bad_js.js
+readings that arrived as text: 0
+$ eslint --no-config-lookup --rule '{"valid-typeof": "error"}' values_lints_valid_typeof_bad_js.js
+
+values_lints_valid_typeof_bad_js.js
+  3:70  error  Invalid typeof comparison value  valid-typeof
+
+✖ 1 problem (1 error, 0 warnings)
+
+exit status: 1
+$ node values_lints_valid_typeof_good_js.js
+readings that arrived as text: 2
+$ eslint --no-config-lookup --rule '{"valid-typeof": "error"}' values_lints_valid_typeof_good_js.js
+exit status: 0

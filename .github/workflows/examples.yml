@@ -30,12 +30,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install the pinned TypeScript compiler
+      - name: Install the pinned TypeScript compiler and ESLint
         run: npm ci
       - name: Show toolchain
         run: |
           node --version
           npx --no-install tsc --version
+          npx --no-install eslint --version
           python3 --version
           bash --version | head -1
           uname -sm

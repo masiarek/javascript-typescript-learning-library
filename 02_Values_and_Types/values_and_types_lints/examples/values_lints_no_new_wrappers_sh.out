@@ -1,0 +1,19 @@
+$ node values_lints_no_new_wrappers_bad_js.js
+object, object
+ship the order
+unknown currency
+$ eslint --no-config-lookup --rule '{"no-new-wrappers": "error"}' values_lints_no_new_wrappers_bad_js.js
+
+values_lints_no_new_wrappers_bad_js.js
+  3:14  error  Do not use Boolean as a constructor  no-new-wrappers
+  4:18  error  Do not use String as a constructor   no-new-wrappers
+
+✖ 2 problems (2 errors, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_new_wrappers_good_js.js
+boolean, string
+wait for payment
+price in euros
+$ eslint --no-config-lookup --rule '{"no-new-wrappers": "error"}' values_lints_no_new_wrappers_good_js.js
+exit status: 0

@@ -1,0 +1,9 @@
+values_types_errors_string_wrapper_tserror.ts:3:3 - error TS2322: Type 'String' is not assignable to type 'string'.
+  'string' is a primitive, but 'String' is a wrapper object. Prefer using 'string' when possible.
+
+3   return sku;
+    ~~~~~~
+
+
+Found 1 error in values_types_errors_string_wrapper_tserror.ts:3
+

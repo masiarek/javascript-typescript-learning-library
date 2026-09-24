@@ -1,0 +1,7 @@
+$ cat order_id.mjs
+// An order number too big for a Number, read from text.
+const orderId = new BigInt("9007199254740993");
+console.log(`${orderId}n`);
+$ node order_id.mjs
+TypeError: BigInt is not a constructor
+exit status: 1

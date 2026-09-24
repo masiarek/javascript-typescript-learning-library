@@ -1,0 +1,15 @@
+$ node values_lints_no_extend_native_bad_js.js
+""
+$ eslint --no-config-lookup --rule '{"no-extend-native": "error"}' values_lints_no_extend_native_bad_js.js
+
+values_lints_no_extend_native_bad_js.js
+  2:1  error  String prototype is read only, properties should not be added  no-extend-native
+
+✖ 1 problem (1 error, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_extend_native_good_js.js
+"a"
+"a"
+$ eslint --no-config-lookup --rule '{"no-extend-native": "error"}' values_lints_no_extend_native_good_js.js
+exit status: 0

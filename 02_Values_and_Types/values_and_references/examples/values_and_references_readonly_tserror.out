@@ -1,0 +1,13 @@
+values_and_references_readonly_tserror.ts:5:6 - error TS2540: Cannot assign to 'status' because it is a read-only property.
+
+5 view.status = "paid";
+       ~~~~~~
+
+values_and_references_readonly_tserror.ts:8:6 - error TS2540: Cannot assign to 'tier' because it is a read-only property.
+
+8 plan.tier = "free";
+       ~~~~
+
+
+Found 2 errors in the same file, starting at: values_and_references_readonly_tserror.ts:5
+

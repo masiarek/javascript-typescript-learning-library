@@ -1,0 +1,7 @@
+$ cat session_key.mjs
+// A key for a cache entry that no string key can collide with.
+const sessionKey = new Symbol("session");
+console.log(String(sessionKey));
+$ node session_key.mjs
+TypeError: Symbol is not a constructor
+exit status: 1

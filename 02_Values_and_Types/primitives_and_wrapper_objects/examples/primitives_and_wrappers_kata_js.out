@@ -1,0 +1,8 @@
+unwrap(value)       typeof    truthy   === twin
+""                  string    false    true
+new String("")      string    false    true
+0                   number    false    true
+new Number(0)       number    false    true
+false               boolean   false    true
+new Boolean(false)  boolean   false    true
+{ count: 0 }        object    true     false

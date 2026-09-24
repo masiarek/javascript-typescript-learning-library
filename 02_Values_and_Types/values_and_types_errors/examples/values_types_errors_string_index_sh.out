@@ -1,0 +1,12 @@
+$ cat capitalize.mjs
+// Capitalize a customer's first name in place.
+let firstName = "ada";
+firstName[0] = firstName[0].toUpperCase();
+console.log(firstName);
+$ node capitalize.mjs
+TypeError: Cannot assign to read only property '0' of string 'ada'
+exit status: 1
+$ cp capitalize.mjs capitalize.cjs
+$ node capitalize.cjs
+ada
+exit status: 0

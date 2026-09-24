@@ -1,0 +1,14 @@
+$ cat log_key_plus.mjs
+// Log the key a cache entry is stored under.
+const sessionKey = Symbol("session");
+console.log("stored under " + sessionKey);
+$ node log_key_plus.mjs
+TypeError: Cannot convert a Symbol value to a string
+exit status: 1
+$ cat log_key_template.mjs
+// The same, with a template literal.
+const sessionKey = Symbol("session");
+console.log(`stored under ${sessionKey}`);
+$ node log_key_template.mjs
+TypeError: Cannot convert a Symbol value to a string
+exit status: 1

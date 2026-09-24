@@ -1,0 +1,7 @@
+$ cat payment_json.mjs
+// Send a payment as JSON; its amount is a BigInt.
+const payment = { id: 7, amountCents: 9007199254740993n };
+console.log(JSON.stringify(payment));
+$ node payment_json.mjs
+TypeError: Do not know how to serialize a BigInt
+exit status: 1

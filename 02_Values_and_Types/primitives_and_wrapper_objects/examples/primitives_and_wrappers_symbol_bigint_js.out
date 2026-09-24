@@ -1,0 +1,11 @@
+new Symbol("id")        TypeError: Symbol is not a constructor
+new BigInt(10)          TypeError: BigInt is not a constructor
+new String("id")        made a value of type object
+
+typeof Symbol("id")     symbol
+typeof BigInt(10)       bigint
+
+expression              typeof   instanceof   typeof valueOf()
+Object(Symbol("id"))    object   true         symbol
+Object(10n)             object   true         bigint
+Object("id")            object   true         string

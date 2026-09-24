@@ -1,0 +1,15 @@
+undefined, filled in by the language:
+  total                                     undefined
+  order.discount                            undefined
+  unitOf("rice")                            undefined
+  remember(1042)                            undefined
+  stopEarly()                               undefined
+  void 0                                    undefined
+  prices[5]                                 undefined
+  prices.find((price) => price > 5000)      undefined
+  stock.get("beans")                        undefined
+null, returned by code that chose it:
+  "rice".match(/[0-9]/)                     null
+  Object.getPrototypeOf(Object.prototype)   null
+  query.get("sort")                         null
+  JSON.parse('{"discount":null}').discount  null

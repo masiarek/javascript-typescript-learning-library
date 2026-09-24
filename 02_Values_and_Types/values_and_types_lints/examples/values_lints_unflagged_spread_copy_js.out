@@ -1,0 +1,2 @@
+after pushing to the spread copy: ["new","sale"]
+after pushing to a structuredClone: ["new","sale"]

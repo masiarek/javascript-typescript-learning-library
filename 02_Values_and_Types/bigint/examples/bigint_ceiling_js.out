@@ -1,0 +1,3 @@
+widest = 1n << (2n ** 30n - 65n)  built
+widest >> (2n ** 30n - 65n)       1n, so widest has 1073741760 bits
+1n << (2n ** 30n)                 RangeError: Maximum BigInt size exceeded

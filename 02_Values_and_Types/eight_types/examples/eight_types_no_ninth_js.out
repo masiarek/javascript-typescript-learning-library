@@ -1,0 +1,18 @@
+typeof Money                                      "function"
+typeof price                                      "object"
+Object.getPrototypeOf(price) === Money.prototype  true
+
+value                      Object(v) === v
+Money                      true
+price                      true
+new Map()                  true
+new Set()                  true
+new Error("out of stock")  true
+Promise.resolve(price)     true
+new Proxy(price, {})       true
+new Uint8Array(4)          true
+Object.create(null)        true
+Object(1999n)              true
+Math                       true
+globalThis                 true
+12 of 12 are objects: one type, Object

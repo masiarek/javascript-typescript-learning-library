@@ -1,0 +1,9 @@
+sku.toUpperCase === String.prototype.toUpperCase  true
+sloppy method, called twice:
+  typeof this                 object
+  this instanceof String      true
+  this.valueOf() === sku      true
+  first this === second this  false
+strict method:
+  typeof this                 string
+  this === sku                true

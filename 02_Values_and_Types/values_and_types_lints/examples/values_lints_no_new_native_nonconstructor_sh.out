@@ -1,0 +1,17 @@
+$ node values_lints_no_new_native_nonconstructor_bad_js.js
+TypeError: Symbol is not a constructor
+TypeError: BigInt is not a constructor
+$ eslint --no-config-lookup --rule '{"no-new-native-nonconstructor": "error"}' values_lints_no_new_native_nonconstructor_bad_js.js
+
+values_lints_no_new_native_nonconstructor_bad_js.js
+   4:24  error  `Symbol` cannot be called as a constructor  no-new-native-nonconstructor
+  10:25  error  `BigInt` cannot be called as a constructor  no-new-native-nonconstructor
+
+✖ 2 problems (2 errors, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_new_native_nonconstructor_good_js.js
+Symbol(order) is a symbol
+10n is a bigint
+$ eslint --no-config-lookup --rule '{"no-new-native-nonconstructor": "error"}' values_lints_no_new_native_nonconstructor_good_js.js
+exit status: 0

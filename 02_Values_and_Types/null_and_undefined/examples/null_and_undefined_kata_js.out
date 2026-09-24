@@ -1,0 +1,6 @@
+settings                        volumeOf  || 50   { volume = 50 }
+{}                              50        50      50
+{ volume: undefined }           50        50      50
+JSON.parse('{"volume":null}')   50        50      null
+{ volume: 0 }                   0         50      0
+{ volume: 80 }                  80        80      80

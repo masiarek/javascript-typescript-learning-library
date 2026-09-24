@@ -1,0 +1,17 @@
+typeof_in_typescript_tserror.ts:7:43 - error TS18047: 'reading' is possibly 'null'.
+
+7   if (typeof reading === "object") return reading.toISOString();
+                                            ~~~~~~~
+
+typeof_in_typescript_tserror.ts:14:47 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+14 const next: typeof station = { name: "south", celsius: "22.0" };
+                                                 ~~~~~~~
+
+  typeof_in_typescript_tserror.ts:13:34 - The expected type comes from property 'celsius' which is declared here on type '{ name: string; celsius: number; }'
+    13 const station = { name: "north", celsius: 21.5 };
+                                        ~~~~~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: typeof_in_typescript_tserror.ts:7
+

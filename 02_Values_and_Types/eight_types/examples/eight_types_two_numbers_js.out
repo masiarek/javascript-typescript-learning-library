@@ -1,0 +1,12 @@
+typeof 1                      "number"
+typeof 1.5                    "number"
+typeof 1n                     "bigint"
+1 === 1.0                     true
+1 === 1n                      false
+Number.MAX_SAFE_INTEGER       9007199254740991
+2 ** 53 + 1                   9007199254740992
+2 ** 53 + 1 === 2 ** 53       true
+2n ** 53n + 1n                9007199254740993n
+2n ** 53n + 1n === 2n ** 53n  false
+7 / 2                         3.5
+7n / 2n                       3n

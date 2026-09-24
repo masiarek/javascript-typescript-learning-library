@@ -9,14 +9,21 @@ lesson. That makes three things easy to get wrong, and this gate checks them.
    `**Level:**` line and a `**One line:**` claim. A stub carries the stub
    notice and no `<!-- output: -->` block (there is no answer key to fill it
    from); a checked lesson carries no notice and at least one output block,
-   because that block is what makes it checked. Pages in 00_Start_Here and in
-   a *_Resources chapter are reference pages and need no program.
+   because that block is what makes it checked. Pages in 00_Start_Here, in a
+   *_Resources chapter, and in a folder whose name ends in `_resources` are
+   reference pages and need no program.
+
+   A kata lives on its lesson page, under `## Practice`, as a `### Kata: ...`
+   heading whose solution is a real example pasted by a `<!-- source: -->`
+   block with `_kata` in its stem -- never a hand-typed snippet. A stub has
+   no Practice section: an exercise whose solution was never run is the one
+   thing a practice page must not ship.
 
 2. **The sidebar.** Every chapter is listed in `NAV_ORDER[""]` and every lesson
    folder in its chapter's `NAV_ORDER` row. An unlisted folder does not break
    the build -- it silently sorts to the bottom of the chapter.
 
-3. **The generated indexes.** Four places repeat what the pages say, and are
+3. **The generated indexes.** Five places repeat what the pages say, and are
    generated from them so they cannot drift:
 
    - each chapter README's table of its pages, between `<!-- lessons -->` and
@@ -26,7 +33,11 @@ lesson. That makes three things easy to get wrong, and this gate checks them.
    - the root README's progress line, between `<!-- progress -->` and
      `<!-- /progress -->`;
    - KEYWORDS.md, the keyword index, built from every page's `**Keywords:**`
-     line.
+     line;
+   - KATAS.md, every kata in reading order;
+   - the crosswalk (32_Resources/crosswalk), between `<!-- crosswalk -->`
+     markers: every link a page makes into a sibling library, grouped by
+     library.
 
     python3 tools/check_pages.py          # report problems and stale indexes, exit 1 if any
     python3 tools/check_pages.py --fix    # rewrite the generated blocks, then report what is left
@@ -47,6 +58,7 @@ import mkdocs_hooks  # noqa: E402
 CHAPTER = re.compile(r"^\d\d_[A-Za-z0-9_]+$")
 STUB_NOTICE = "> **Stub — an outline, not a lesson.**"
 KEYWORD = re.compile(r"`([^`]+)`")
+KATA = re.compile(r"^### Kata: (.+)$", re.MULTILINE)
 
 # The root README groups the chapters into parts. A chapter missing from every
 # part is reported, so a new chapter cannot fall out of the front page.
@@ -67,6 +79,10 @@ class Page:
     keywords: list[str] = field(default_factory=list)
     stub: bool = False
     outputs: int = 0
+    practice: bool = False
+    katas: list[str] = field(default_factory=list)
+    unsolved: list[str] = field(default_factory=list)
+    reference: bool = False
 
     @property
     def rel(self) -> str:
@@ -92,6 +108,16 @@ def read_page(folder: Path) -> Page:
         elif line.startswith(STUB_NOTICE):
             page.stub = True
     page.outputs = text.count("<!-- output:")
+    page.practice = bool(re.search(r"^## Practice\s*$", text, re.MULTILINE))
+    # A kata's section runs from its heading to the next ### or ## heading.
+    for m in KATA.finditer(text):
+        title = m.group(1).strip()
+        page.katas.append(title)
+        rest = text[m.end():]
+        stop = re.search(r"^#{2,3} ", rest, re.MULTILINE)
+        section = rest[: stop.start()] if stop else rest
+        if not re.search(r"<!--\s*source:[A-Za-z0-9_\-]*_kata[A-Za-z0-9_\-]*\s*-->", section):
+            page.unsolved.append(title)
     return page
 
 
@@ -143,7 +169,7 @@ def replace_block(text: str, name: str, body: str) -> tuple[str, bool]:
 def lessons_table(chapter: Path, pages: list[Page]) -> str:
     rows = ["| Page | Level | In one line | Status |", "|---|---|---|---|"]
     for p in pages:
-        status = "stub" if p.stub else "checked"
+        status = "stub" if p.stub else ("reference" if p.reference and not p.outputs else "checked")
         rows.append(
             f"| [{cell(p.subject)}]({p.folder.name}/README.md) | {p.level} | {cell(p.one_line)} | {status} |"
         )
@@ -164,6 +190,17 @@ def chapter_title(chapter: Path) -> str:
     return chapter.name
 
 
+def tally(pages: list[Page]) -> str:
+    """"all stubs", or "9 checked, 1 reference" -- the non-zero kinds, in that order."""
+    stubs = sum(p.stub for p in pages)
+    reference = sum(p.reference and not p.outputs and not p.stub for p in pages)
+    checked = len(pages) - stubs - reference
+    if pages and stubs == len(pages):
+        return "all stubs"
+    parts = [(checked, "checked"), (reference, "reference"), (stubs, "stub" if stubs == 1 else "stubs")]
+    return ", ".join(f"{n} {word}" for n, word in parts if n)
+
+
 def chapters_block(all_pages: dict[Path, list[Page]], problems: list[str]) -> str:
     out: list[str] = []
     placed: set[str] = set()
@@ -175,8 +212,7 @@ def chapters_block(all_pages: dict[Path, list[Page]], problems: list[str]) -> st
         for c in members:
             placed.add(c.name)
             pages = all_pages[c]
-            stubs = sum(p.stub for p in pages)
-            count = f"{len(pages)}" + (f" ({stubs} stubs)" if stubs == len(pages) else f" ({len(pages) - stubs} checked)")
+            count = f"{len(pages)} ({tally(pages)})"
             out.append(f"| {c.name[:2]} | [{cell(chapter_title(c))}]({c.name}/README.md) | {cell(chapter_one_line(c))} | {count} |")
         out.append("")
     for c in all_pages:
@@ -187,13 +223,14 @@ def chapters_block(all_pages: dict[Path, list[Page]], problems: list[str]) -> st
 
 def progress_block(all_pages: dict[Path, list[Page]]) -> str:
     pages = [p for ps in all_pages.values() for p in ps]
-    stubs = sum(p.stub for p in pages)
+    katas = sum(len(p.katas) for p in pages)
+
     def n(count: int, word: str) -> str:
         return f"{count} {word}" + ("" if count == 1 else "s")
 
     return (
-        f"**{n(len(pages), 'page')} in {n(len(all_pages), 'chapter')}: {len(pages) - stubs} checked, "
-        f"{n(stubs, 'stub')}.** "
+        f"**{n(len(pages), 'page')} in {n(len(all_pages), 'chapter')}: {tally(pages)}; "
+        f"{n(katas, 'kata')}.** "
         "A stub is an outline — the claim, the questions the finished page will answer and the "
         "examples it will need — and says so at the top. It becomes a lesson when its first "
         "example runs in CI.\n"
@@ -225,6 +262,85 @@ def keywords_page(all_pages: dict[Path, list[Page]]) -> str:
     )
 
 
+SIBLING_LINK = re.compile(
+    r"^- \[(?P<label>[^\]]+?) ↗\]\((?P<url>https://masiarek\.github\.io/(?P<lib>[a-z0-9-]+)/[^)\s]*)\)"
+    r"(?: — (?P<why>.+))?$"
+)
+THIS_LIBRARY = "javascript-typescript-learning-library"
+LIBRARIES = {
+    "encodings-learning-library": "Encodings",
+    "regex-learning-library": "Regex",
+    "concurrency-learning-library": "Concurrency",
+    "math-learning-library": "Math",
+    "java-text-learning-library": "Java text",
+    "python-learning-library": "Python",
+    "rust-learning-library": "Rust",
+    "go-learning-library": "Go",
+    "c-learning-library": "C",
+    "cpp-learning-library": "C++",
+    "linux-learning-library": "Linux",
+    "cryptography-learning-library": "Cryptography",
+    "perl-learning-library": "Perl",
+    "ruby-text-learning-library": "Ruby text",
+    "ruby-learning-library": "Ruby",
+    "agentic-learning-library": "Agentic coding",
+}
+
+
+def crosswalk_block(all_pages: dict[Path, list[Page]]) -> str:
+    """Every sibling-library link on every page outside 32_Resources, grouped by library."""
+    by_lib: dict[str, list[tuple[Page, str, str, str]]] = {}
+    for chapter, pages in all_pages.items():
+        if chapter.name.endswith("_Resources"):
+            continue
+        for page in pages:
+            for line in (page.folder / "README.md").read_text(encoding="utf-8").splitlines():
+                m = SIBLING_LINK.match(line)
+                if not m or m.group("lib") == THIS_LIBRARY or not m.group("url").endswith(".html"):
+                    continue
+                name = LIBRARIES.get(m.group("lib"), m.group("lib"))
+                label = m.group("label")
+                if label.startswith(name + ": "):
+                    label = label[len(name) + 2:]
+                by_lib.setdefault(m.group("lib"), []).append((page, label, m.group("url"), m.group("why") or ""))
+    total = sum(len(rows) for rows in by_lib.values())
+    pages_linking = len({row[0].rel for rows in by_lib.values() for row in rows})
+    out = [f"{total} links from {pages_linking} pages into {len(by_lib)} sibling libraries.", ""]
+    order = list(LIBRARIES)
+    for lib in sorted(by_lib, key=lambda k: (order.index(k) if k in order else len(order), k)):
+        name = LIBRARIES.get(lib, lib)
+        out += [f"## {name}", "", f"[The {name} library ↗](https://masiarek.github.io/{lib}/)", "",
+                "| Page here | Sibling page | Why |", "|---|---|---|"]
+        for page, label, url, why in by_lib[lib]:
+            out.append(f"| [{cell(page.subject)}](../../{page.rel}/README.md) | [{cell(label)} ↗]({url}) | {cell(why)} |")
+        out.append("")
+    return "\n".join(out)
+
+
+def katas_page(all_pages: dict[Path, list[Page]]) -> str:
+    total = sum(len(p.katas) for ps in all_pages.values() for p in ps)
+    out = [
+        "# Katas",
+        "",
+        "**One line:** Every exercise in the library, in reading order; each solution is a program "
+        "the runner has run, folded on its lesson's page under **Practice**.",
+        "",
+        f"{total} kata{'' if total == 1 else 's'} so far. A kata is added with its lesson: a stub has "
+        "none. This page is generated by `tools/check_pages.py --fix`.",
+        "",
+    ]
+    for chapter, pages in all_pages.items():
+        rows = [(k, p) for p in pages for k in p.katas]
+        if not rows:
+            continue
+        out += [f"## {chapter.name[:2]} — {cell(chapter_title(chapter))}", "",
+                "| Kata | Page | Level |", "|---|---|---|"]
+        for k, p in rows:
+            out.append(f"| [{cell(k)}]({p.rel}/README.md#practice) | {cell(p.subject)} | {p.level} |")
+        out.append("")
+    return "\n".join(out).rstrip("\n") + "\n"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--fix", action="store_true", help="rewrite the generated blocks in place")
@@ -242,10 +358,11 @@ def main() -> int:
         if chapter.name not in root_order:
             problems.append(f"{chapter.name}: not listed in NAV_ORDER[''] in mkdocs_hooks.py")
         order = mkdocs_hooks.NAV_ORDER.get(chapter.name, [])
-        reference = chapter.name == "00_Start_Here" or chapter.name.endswith("_Resources")
+        whole_chapter_reference = chapter.name == "00_Start_Here" or chapter.name.endswith("_Resources")
         pages = [read_page(f) for f in lessons(chapter)]
         all_pages[chapter] = pages
         for p in pages:
+            p.reference = whole_chapter_reference or p.folder.name.endswith("_resources")
             if p.folder.name not in order:
                 problems.append(f"{p.rel}: not listed in NAV_ORDER[{chapter.name!r}]")
             for what, value in (("# H1", p.h1), ("**Level:**", p.level), ("**One line:**", p.one_line)):
@@ -255,8 +372,12 @@ def main() -> int:
                 problems.append(f"{p.rel}: level {p.level!r} is not 101, 201 or 301")
             if p.stub and p.outputs:
                 problems.append(f"{p.rel}: a stub with an output block -- a stub has no answer key to fill it from")
-            if not p.stub and not p.outputs and not reference:
+            if not p.stub and not p.outputs and not p.reference:
                 problems.append(f"{p.rel}: neither a stub nor a checked lesson -- add the stub notice or an output block")
+            if p.stub and (p.practice or p.katas):
+                problems.append(f"{p.rel}: a stub with a Practice section -- a kata ships only with its checked solution")
+            for title in p.unsolved:
+                problems.append(f"{p.rel}: kata {title!r} has no solution example (a <!-- source:..._kata... --> block in its section)")
 
         readme = chapter / "README.md"
         text = readme.read_text(encoding="utf-8")
@@ -267,6 +388,17 @@ def main() -> int:
             stale.append(str(readme.relative_to(REPO)))
             if args.fix:
                 readme.write_text(new, encoding="utf-8")
+
+    crosswalk = REPO / "32_Resources" / "crosswalk" / "README.md"
+    if crosswalk.exists():
+        text = crosswalk.read_text(encoding="utf-8")
+        new, found = replace_block(text, "crosswalk", crosswalk_block(all_pages))
+        if not found:
+            problems.append("32_Resources/crosswalk/README.md: no <!-- crosswalk --> block")
+        if new != text:
+            stale.append("32_Resources/crosswalk/README.md")
+            if args.fix:
+                crosswalk.write_text(new, encoding="utf-8")
 
     readme = REPO / "README.md"
     text = readme.read_text(encoding="utf-8")
@@ -280,12 +412,12 @@ def main() -> int:
         if args.fix:
             readme.write_text(new, encoding="utf-8")
 
-    kw = REPO / "KEYWORDS.md"
-    want = keywords_page(all_pages)
-    if not kw.exists() or kw.read_text(encoding="utf-8") != want:
-        stale.append("KEYWORDS.md")
-        if args.fix:
-            kw.write_text(want, encoding="utf-8")
+    for name, want in (("KEYWORDS.md", keywords_page(all_pages)), ("KATAS.md", katas_page(all_pages))):
+        target = REPO / name
+        if not target.exists() or target.read_text(encoding="utf-8") != want:
+            stale.append(name)
+            if args.fix:
+                target.write_text(want, encoding="utf-8")
 
     total = sum(len(p) for p in all_pages.values())
     if stale and args.fix:
@@ -298,8 +430,9 @@ def main() -> int:
         for p in problems:
             print(f"  - {p}")
         return 1
-    stubs = sum(p.stub for ps in all_pages.values() for p in ps)
-    print(f"check_pages: {total} page(s) in {len(all_pages)} chapter(s) ({total - stubs} checked, {stubs} stub(s)); indexes current.")
+    every = [p for ps in all_pages.values() for p in ps]
+    print(f"check_pages: {total} page(s) in {len(all_pages)} chapter(s) ({tally(every)}; "
+          f"{sum(len(p.katas) for p in every)} kata(s)); indexes current.")
     return 0
 
 

@@ -1,0 +1,6 @@
+order.coupon:                   undefined
+"coupon" in order:              true
+Object.hasOwn(order, "coupon"): true
+Object.keys(order):             ["id","coupon"]
+order.gift:                     undefined
+"gift" in order:                false

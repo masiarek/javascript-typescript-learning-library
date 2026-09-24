@@ -1,0 +1,10 @@
+expression        x = null          x = undefined
+Number(x)         0                 NaN
+x + 1             1                 NaN
+x * 10            0                 NaN
+1999 - x          1999              NaN
+Math.max(x, -1)   0                 NaN
+x >= 0            true              false
+x > 0             false             false
+x == 0            false             false
+x + " items"      null items        undefined items

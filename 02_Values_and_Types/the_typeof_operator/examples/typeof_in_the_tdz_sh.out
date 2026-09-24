@@ -1,0 +1,25 @@
+$ cat bare.mjs
+console.log(window);
+$ node bare.mjs
+ReferenceError: window is not defined
+exit status: 1
+
+$ cat guarded.mjs
+console.log(typeof window);
+$ node guarded.mjs
+undefined
+exit status: 0
+
+$ cat helper.mjs
+const isDefined = (value) => typeof value !== "undefined";
+console.log(isDefined(window));
+$ node helper.mjs
+ReferenceError: window is not defined
+exit status: 1
+
+$ cat dead_zone.mjs
+console.log(typeof total);
+let total = 0;
+$ node dead_zone.mjs
+ReferenceError: Cannot access 'total' before initialization
+exit status: 1

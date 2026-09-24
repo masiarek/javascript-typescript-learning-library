@@ -1,0 +1,4 @@
+cart                       {"owner":"ana","items":["milk"]}
+next                       {"owner":"ana","items":["milk","eggs"]}
+next === cart              false
+next.items === cart.items  false

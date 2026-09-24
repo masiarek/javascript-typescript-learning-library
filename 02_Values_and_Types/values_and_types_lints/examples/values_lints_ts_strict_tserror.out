@@ -1,0 +1,8 @@
+values_lints_ts_strict_tserror.ts:3:10 - error TS18047: 'name' is possibly 'null'.
+
+3   return name.slice(0, 1);
+           ~~~~
+
+
+Found 1 error in values_lints_ts_strict_tserror.ts:3
+

@@ -1,0 +1,11 @@
+1n + 1            TypeError: Cannot mix BigInt and other types, use explicit conversions
+1n * 1.5          TypeError: Cannot mix BigInt and other types, use explicit conversions
+Math.max(1n, 2n)  TypeError: Cannot convert a BigInt value to a number
++1n               TypeError: Cannot convert a BigInt value to a number
+-1n               -1n
+1n == 1           true
+1n === 1          false
+2n > 1            true
+1n < 1.5          true
+Number(1n) + 1    2
+1n + BigInt(1)    2n

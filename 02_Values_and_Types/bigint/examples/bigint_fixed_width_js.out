@@ -1,0 +1,10 @@
+BigInt.asIntN(8, 127n)          127n
+BigInt.asIntN(8, 128n)          -128n
+BigInt.asIntN(8, 255n)          -1n
+BigInt.asUintN(8, 256n)         0n
+BigInt.asUintN(8, -1n)          255n
+BigInt.asUintN(8, 255n << 2n)   252n
+BigInt.asUintN(64, -1n)         18446744073709551615n
+BigInt.asIntN(64, 2n ** 63n)    -9223372036854775808n
+Int8Array.of(255)[0]            -1
+BigInt64Array.of(2n ** 63n)[0]  -9223372036854775808n

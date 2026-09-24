@@ -1,0 +1,8 @@
+$ cat add_item.mjs
+// Add a third item to the cart.
+const cart = { items: 2, totalCents: 1999 };
+cart = { ...cart, items: 3 };
+console.log(JSON.stringify(cart));
+$ node add_item.mjs
+TypeError: Assignment to constant variable.
+exit status: 1

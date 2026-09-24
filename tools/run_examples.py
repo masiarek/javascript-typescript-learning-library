@@ -32,8 +32,8 @@ bare stem with no path and no extension -- hence the language suffix.
 
 Every example runs under one fixed environment -- `LC_ALL=C`, `LANG=C`,
 `TZ=UTC`, no `NODE_OPTIONS`, colours off -- from its own folder, with the chosen
-Node first on PATH (and as $NODE) and the pinned `tsc` on PATH, so a driver
-calls the same toolchain the runner does. Output is captured as bytes and
+Node first on PATH (and as $NODE) and the pinned `tsc` and `eslint` on PATH,
+so a driver calls the same toolchain the runner does. Output is captured as bytes and
 decoded as UTF-8. Only stdout is recorded; a program that writes to stderr gets
 a note, and a program that exits non-zero fails the run -- a lesson about an
 uncaught error shows it through a `.sh` driver, which prints the exit status
@@ -44,7 +44,8 @@ Toolchain
     Node 24 or later   $NODE, then `node` on PATH, then Homebrew's node, node@24,
                        node@26 -- the first that is 24+. CI runs Node 24 (LTS).
     TypeScript         node_modules/typescript, pinned in package-lock.json:
-                       run `npm ci` once after cloning.
+                       run `npm ci` once after cloning. ESLint, pinned the
+                       same way, is there for the lint pages' drivers.
 
 Four modes
 ----------
@@ -224,9 +225,10 @@ def _one_off_tsconfig(files: list[Path], tmp: Path) -> Path:
     """A tsconfig that checks exactly `files` with the repo's compiler options.
 
     tsc refuses a file list on the command line while a tsconfig.json sits in
-    the working directory (TypeScript 7.0.2: "error TS5112: tsconfig.json is
-    present but will not be loaded if files are specified on commandline"),
-    and a list that ignored the config would check with other options anyway. So each run gets a small
+    the working directory or any folder above it -- so anywhere in this repo
+    (TypeScript 7.0.2: "error TS5112: tsconfig.json is present but will not be
+    loaded if files are specified on commandline"), and a list that ignored
+    the config would check with other options anyway. So each run gets a small
     config that extends the real one. typeRoots is absolute because @types is
     otherwise looked up beside the config, and this one lives in a temp dir.
     """

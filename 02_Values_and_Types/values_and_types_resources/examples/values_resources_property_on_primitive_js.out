@@ -1,0 +1,2 @@
+sloppy code: no error, sku.discount is undefined
+module code: TypeError: Cannot create property 'discount' on string 'SKU-1'

@@ -58,6 +58,7 @@ NAV_ORDER: dict[str, list[str]] = {
         "index.md",
         "00_Start_Here",
         "KEYWORDS.md",
+        "KATAS.md",
         "01_Running_JavaScript",
         "02_Values_and_Types",
         "03_Equality_and_Coercion",
@@ -114,6 +115,11 @@ NAV_ORDER: dict[str, list[str]] = {
         "symbols",
         "bigint",
         "values_and_references",
+        # The chapter's companions: every error message, every lint, and
+        # where to read further, each pointing back at the lessons above.
+        "values_and_types_errors",
+        "values_and_types_lints",
+        "values_and_types_resources",
     ],
     "03_Equality_and_Coercion": [
         "README.md",

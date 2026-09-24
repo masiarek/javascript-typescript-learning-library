@@ -1,0 +1,12 @@
+1. hold a property of its own
+   order.note = "fragile"      order.note is "fragile"
+   code.note = "fragile"       TypeError: Cannot create property 'note' on string 'ab-100'
+2. change in place
+   order.code = "AB-100"       order is {"code":"AB-100","note":"fragile"}
+   code[0] = "A"               TypeError: Cannot assign to read only property '0' of string 'ab-100'
+   code.toUpperCase()          returns "AB-100"; code is still "ab-100"
+   code = code.toUpperCase()   code is "AB-100": a new string in the same variable
+3. be compared by identity
+   first === second            false: two objects, built alike
+   first === first             true: one object
+   "ab-100" === "ab-" + "100"  true: two strings, same characters

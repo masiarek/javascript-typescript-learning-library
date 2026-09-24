@@ -1,0 +1,5 @@
+typeof discount                           "object"
+Object(discount) === discount             false
+discount instanceof Object                false
+Object.prototype.toString.call(discount)  [object Null]
+discount.percent                          TypeError: Cannot read properties of null (reading 'percent')

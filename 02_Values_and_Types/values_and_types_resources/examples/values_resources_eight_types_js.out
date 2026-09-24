@@ -1,0 +1,12 @@
+value          typeof     primitive
+undefined      undefined  yes
+null           object     yes
+true           boolean    yes
+42             number     yes
+"SKU-1"        string     yes
+Symbol("id")   symbol     yes
+42n            bigint     yes
+{ price: 5 }   object     no
+() => 5        function   no
+primitives in this table: 7
+different typeof answers: 8

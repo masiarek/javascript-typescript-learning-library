@@ -1,0 +1,9 @@
+primitives_and_wrappers_string_object_tserror.ts:8:19 - error TS2345: Argument of type 'String' is not assignable to parameter of type 'string'.
+  'string' is a primitive, but 'String' is a wrapper object. Prefer using 'string' when possible.
+
+8 console.log(shout(wrapper)); // a String object where a string is expected
+                    ~~~~~~~
+
+
+Found 1 error in primitives_and_wrappers_string_object_tserror.ts:8
+

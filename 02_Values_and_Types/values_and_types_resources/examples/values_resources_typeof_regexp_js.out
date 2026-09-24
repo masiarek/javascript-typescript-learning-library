@@ -1,0 +1,3 @@
+typeof skuPattern:        object
+typeof new RegExp("SKU"): object
+calling it: TypeError: skuPattern is not a function

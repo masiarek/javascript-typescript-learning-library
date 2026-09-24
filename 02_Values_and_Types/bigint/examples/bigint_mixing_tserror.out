@@ -1,0 +1,13 @@
+bigint_mixing_tserror.ts:5:10 - error TS2365: Operator '*' cannot be applied to types 'bigint' and 'number'.
+
+5   return unitPrice * quantity;
+           ~~~~~~~~~~~~~~~~~~~~
+
+bigint_mixing_tserror.ts:9:13 - error TS2367: This comparison appears to be unintentional because the types 'bigint' and 'number' have no overlap.
+
+9 console.log(unitPrice == 1999);
+              ~~~~~~~~~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: bigint_mixing_tserror.ts:5
+

@@ -1,0 +1,15 @@
+$ node values_lints_no_compare_neg_zero_bad_js.js
+reading 0 rounded to -0
+reading 1 rounded to -0
+$ eslint --no-config-lookup --rule '{"no-compare-neg-zero": "error"}' values_lints_no_compare_neg_zero_bad_js.js
+
+values_lints_no_compare_neg_zero_bad_js.js
+  4:7  error  Do not use the '===' operator to compare against -0  no-compare-neg-zero
+
+✖ 1 problem (1 error, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_compare_neg_zero_good_js.js
+reading 1 rounded to -0
+$ eslint --no-config-lookup --rule '{"no-compare-neg-zero": "error"}' values_lints_no_compare_neg_zero_good_js.js
+exit status: 0

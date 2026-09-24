@@ -1,0 +1,7 @@
+$ cat ship_order.mjs
+// An order saved before anyone entered a delivery address.
+const order = { id: 7, totalCents: 1999 };
+console.log(`ship to ${order.customer.city}`);
+$ node ship_order.mjs
+TypeError: Cannot read properties of undefined (reading 'city')
+exit status: 1

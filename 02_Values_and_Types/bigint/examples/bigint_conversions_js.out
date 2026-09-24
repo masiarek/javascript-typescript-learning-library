@@ -1,0 +1,9 @@
+BigInt("0x1f")                 31n
+BigInt("9007199254740993")     9007199254740993n
+BigInt(2 ** 53 + 1)            9007199254740992n
+BigInt(2 ** 64)                18446744073709551616n
+BigInt(1.5)                    RangeError: The number 1.5 cannot be converted to a BigInt because it is not an integer
+BigInt("1.5")                  SyntaxError: Cannot convert 1.5 to a BigInt
+BigInt("")                     0n
+JSON.stringify(order)          TypeError: Do not know how to serialize a BigInt
+JSON.stringify(order, asText)  {"total":"18446744073709551616"}

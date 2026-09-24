@@ -1,0 +1,13 @@
+null_and_undefined_possibly_null_tserror.ts:5:13 - error TS18047: 'skuDigits' is possibly 'null'.
+
+5 console.log(skuDigits[0]);
+              ~~~~~~~~~
+
+null_and_undefined_possibly_null_tserror.ts:9:13 - error TS18048: 'beans' is possibly 'undefined'.
+
+9 console.log(beans.toFixed(0));
+              ~~~~~
+
+
+Found 2 errors in the same file, starting at: null_and_undefined_possibly_null_tserror.ts:5
+

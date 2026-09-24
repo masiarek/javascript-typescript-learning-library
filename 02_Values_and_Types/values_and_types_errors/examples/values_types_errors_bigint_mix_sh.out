@@ -1,0 +1,8 @@
+$ cat add_fee.mjs
+// A balance past 2**53, kept exact as a BigInt, plus a fee in cents.
+const balanceCents = 9007199254740993n;
+const feeCents = 250;
+console.log(`${balanceCents + feeCents}n`);
+$ node add_fee.mjs
+TypeError: Cannot mix BigInt and other types, use explicit conversions
+exit status: 1

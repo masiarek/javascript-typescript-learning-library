@@ -2,7 +2,7 @@
 
 **One line:** Every keyword, operator and API a page here is the home of, and that page; each page names its terms on its `**Keywords:**` line, and this index is generated from those lines by `tools/check_pages.py --fix`.
 
-718 terms. Terms that start with punctuation (`?.`, `??`, `#private`) sort after the words.
+733 terms. Terms that start with punctuation (`?.`, `??`, `#private`) sort after the words.
 
 | Keyword or API | Where it is explained |
 |---|---|
@@ -128,6 +128,7 @@
 | `DefinitelyTyped` | [Types for packages](29_Declaration_Files_and_Module_Resolution/types_for_packages/README.md) |
 | `Deno` | [Deno and Bun](31_Tooling/deno_and_bun/README.md) |
 | `deref` | [`WeakRef` and `FinalizationRegistry`](18_Memory_and_Garbage_Collection/weakref_and_finalizationregistry/README.md) |
+| `description` | [Symbols](02_Values_and_Types/symbols/README.md) |
 | `destructuring` | [Destructuring](04_Variables_and_Scope/destructuring/README.md) |
 | `destructuring assignment` | [Destructuring](04_Variables_and_Scope/destructuring/README.md) |
 | `difference` | [Grouping and set operations](08_Arrays_and_Collections/grouping_and_set_operations/README.md) |
@@ -153,6 +154,7 @@
 | `enum` | [Enums](23_Everyday_Types/enums_and_alternatives/README.md) |
 | `enumerable` | [Property descriptors](06_Objects/property_descriptors/README.md) |
 | `--env-file` | [`process`](19_Node_Runtime/process_argv_env_and_exit_codes/README.md) |
+| `eqeqeq` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `erasableSyntaxOnly` | [Erasable syntax](22_TypeScript_Basics/erasable_syntax/README.md) |
 | `ERR_PACKAGE_PATH_NOT_EXPORTED` | [`package.json`](14_Modules/package_json_type_and_exports/README.md) |
 | `ERR_REQUIRE_ASYNC_MODULE` | [`require` and ES modules](14_Modules/require_and_esm_interop/README.md) |
@@ -243,6 +245,7 @@
 | `if...else` | [`if`, `switch` and `? :`](11_Control_Flow_and_Iteration/if_switch_and_the_conditional_operator/README.md) |
 | `--ignoreConfig` | [`tsc` and `tsconfig.json`](22_TypeScript_Basics/tsc_and_tsconfig/README.md) |
 | `IIFE` | [Closures in loops](04_Variables_and_Scope/closures_in_loops/README.md) |
+| `immutable` | [Eight types](02_Values_and_Types/eight_types/README.md) |
 | `immutable binding` | [`const` is not frozen](04_Variables_and_Scope/const_is_not_frozen/README.md) |
 | `implements` | [`abstract` and `implements`](28_Classes_in_TypeScript/abstract_classes_and_implements/README.md) |
 | `implicit index signature` | [Recursive types](27_Type_Operators/recursive_types/README.md) |
@@ -345,9 +348,18 @@
 | `NFKC` | [Normalization](09_Strings_and_Unicode/normalization/README.md) |
 | `NFKD` | [Normalization](09_Strings_and_Unicode/normalization/README.md) |
 | `no-await-in-loop` | [Sequential or parallel](13_Async_and_the_Event_Loop/sequential_or_parallel_awaits/README.md) |
+| `no-compare-neg-zero` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `no-cond-assign` | [ESLint](31_Tooling/linting_with_eslint/README.md) |
+| `no-constant-binary-expression` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
+| `no-extend-native` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `no-floating-promises` | [ESLint](31_Tooling/linting_with_eslint/README.md) |
+| `no-implicit-coercion` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
+| `no-loss-of-precision` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
+| `no-new-native-nonconstructor` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
+| `no-new-wrappers` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
+| `no-shadow-restricted-names` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `--no-strip-types` | [Running TypeScript](22_TypeScript_Basics/running_typescript/README.md) |
+| `no-undef-init` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `node --test` | [The built-in test runner](19_Node_Runtime/the_built_in_test_runner/README.md) |
 | `node -e` | [Running a file with Node](01_Running_JavaScript/running_a_file_with_node/README.md) |
 | `node -p` | [Running a file with Node](01_Running_JavaScript/running_a_file_with_node/README.md) |
@@ -380,6 +392,7 @@
 | `Number.MIN_SAFE_INTEGER` | [Safe integers](10_Numbers_and_Math/safe_integers/README.md) |
 | `object` | [`object`, `Object` and `{}`](25_Type_Compatibility/object_and_empty_object_types/README.md) |
 | `Object` | [`object`, `Object` and `{}`](25_Type_Compatibility/object_and_empty_object_types/README.md) |
+| `object identity` | [Values and references](02_Values_and_Types/values_and_references/README.md) |
 | `object literal` | [Object literals](06_Objects/object_literals/README.md) |
 | `object reference` | [Values and references](02_Values_and_Types/values_and_references/README.md) |
 | `Object.assign` | [Copying objects](06_Objects/copying_objects/README.md) |
@@ -652,6 +665,7 @@
 | `Uppercase` | [Template literal types](27_Type_Operators/template_literal_types/README.md) |
 | `URIError` | [Built-in error types](12_Errors/error_types/README.md) |
 | `use strict` | [Strict mode](01_Running_JavaScript/strict_mode/README.md) |
+| `use-isnan` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `useUnknownInCatchVariables` | [`strict`](22_TypeScript_Basics/strict_mode_in_typescript/README.md) |
 | `using` | [`using` and `Symbol.dispose`](17_Metaprogramming/explicit_resource_management/README.md) |
 | `UTF-16` | [Strings are UTF-16](09_Strings_and_Unicode/strings_are_utf16/README.md) |
@@ -660,6 +674,7 @@
 | `V8` | [Which features your Node has](01_Running_JavaScript/which_features_your_node_has/README.md) |
 | `--v8-options` | [Which features your Node has](01_Running_JavaScript/which_features_your_node_has/README.md) |
 | `v8.writeHeapSnapshot` | [Measuring memory](18_Memory_and_Garbage_Collection/measuring_memory_in_node/README.md) |
+| `valid-typeof` | [Lints around values and types](02_Values_and_Types/values_and_types_lints/README.md) |
 | `valueOf` | [ToPrimitive](03_Equality_and_Coercion/toprimitive/README.md) |
 | `var` | [`var`, `let` and `const`](04_Variables_and_Scope/var_let_and_const/README.md) |
 | `variance` | [Variance](25_Type_Compatibility/variance/README.md) |

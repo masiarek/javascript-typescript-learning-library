@@ -1,0 +1,5 @@
+structuredClone(Symbol("audit"))       DataCloneError: Symbol(audit) could not be cloned.
+structuredClone(Symbol.for("audit"))   DataCloneError: Symbol(audit) could not be cloned.
+structuredClone({ checkedBy: audit })  DataCloneError: Symbol(audit) could not be cloned.
+keys of order                          id, Symbol(audit)
+keys of structuredClone(order)         id

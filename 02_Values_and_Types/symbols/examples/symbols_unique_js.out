@@ -1,0 +1,7 @@
+billingId.description === auditId.description  true
+billingId === auditId                          false
+billingId === billingId                        true
+order.id                                       A-1001
+order[billingId]                               INV-7
+order[auditId]                                 checked by Ada
+the same writes with the string key "id"       {"id":"checked by Ada"}

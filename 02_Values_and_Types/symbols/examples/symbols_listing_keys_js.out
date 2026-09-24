@@ -1,0 +1,7 @@
+Object.keys(order)                   id
+for (const key in order)             id
+JSON.stringify(order)                {"id":"A-1001"}
+keys of Object.assign({}, order)     id, Symbol(audit)
+keys of { ...order }                 id, Symbol(audit)
+Reflect.ownKeys(order)               id, Symbol(audit)
+Object.getOwnPropertySymbols(order)  Symbol(audit)

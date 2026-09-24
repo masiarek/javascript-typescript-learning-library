@@ -1,0 +1,13 @@
+eight_types_primitive_tserror.ts:5:1 - error TS2542: Index signature in type 'String' only permits reading.
+
+5 code[0] = "A";
+  ~~~~~~~
+
+eight_types_primitive_tserror.ts:8:7 - error TS2322: Type 'string' is not assignable to type 'object'.
+
+8 const label: object = code;
+        ~~~~~
+
+
+Found 2 errors in the same file, starting at: eight_types_primitive_tserror.ts:5
+

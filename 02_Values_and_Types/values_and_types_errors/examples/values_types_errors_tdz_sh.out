@@ -1,0 +1,10 @@
+$ cat tax_rate.mjs
+// Use a default until a tax rate has been set.
+if (typeof taxRate === "undefined") {
+  console.log("no tax rate yet: using 0");
+}
+let taxRate = 0.2;
+console.log(`tax rate ${taxRate}`);
+$ node tax_rate.mjs
+ReferenceError: Cannot access 'taxRate' before initialization
+exit status: 1

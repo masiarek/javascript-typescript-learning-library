@@ -1,0 +1,4 @@
+undefined writable: false, configurable: false
+NaN       writable: false, configurable: false
+sloppy code, after assigning: undefined NaN
+strict code: TypeError: Cannot assign to read only property 'undefined' of object '#<Object>'

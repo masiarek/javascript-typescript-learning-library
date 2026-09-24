@@ -1,0 +1,15 @@
+value        Object(v) === v  Object(v) returns    so it is   type
+undefined    false            a new empty object   primitive  Undefined
+null         false            a new empty object   primitive  Null
+true         false            a Boolean wrapper    primitive  Boolean
+1            false            a Number wrapper     primitive  Number
+1n           false            a BigInt wrapper     primitive  BigInt
+"s"          false            a String wrapper     primitive  String
+Symbol()     false            a Symbol wrapper     primitive  Symbol
+{}           true             the same object      object     Object, made by Object
+[]           true             the same object      object     Object, made by Array
+() => {}     true             the same object      object     Object, made by Function
+new Date(0)  true             the same object      object     Object, made by Date
+/s/          true             the same object      object     Object, made by RegExp
+12 values: 7 primitives, 5 objects
+8 types: Undefined, Null, Boolean, Number, BigInt, String, Symbol, Object

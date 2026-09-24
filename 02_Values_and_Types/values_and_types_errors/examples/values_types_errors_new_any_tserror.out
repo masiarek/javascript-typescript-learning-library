@@ -1,0 +1,13 @@
+values_types_errors_new_any_tserror.ts:2:17 - error TS7009: 'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+2 const orderId = new BigInt("9007199254740993");
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+values_types_errors_new_any_tserror.ts:3:20 - error TS7009: 'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+
+3 const sessionKey = new Symbol("session");
+                     ~~~~~~~~~~~~~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: values_types_errors_new_any_tserror.ts:2
+

@@ -1,0 +1,10 @@
+$ tsc --version
+Version 7.0.2
+$ cat order.ts
+const discountCode: string = null;
+export {};
+$ tsc --noEmit order.ts
+order.ts(1,7): error TS2322: Type 'null' is not assignable to type 'string'.
+exit status: 1
+$ tsc --noEmit --strictNullChecks false order.ts
+exit status: 0

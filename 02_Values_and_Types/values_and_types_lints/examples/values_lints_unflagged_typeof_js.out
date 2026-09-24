@@ -1,0 +1,2 @@
+typeof only: [{"sku":"tea"},null,["cake"]]
+checked:     [{"sku":"tea"}]

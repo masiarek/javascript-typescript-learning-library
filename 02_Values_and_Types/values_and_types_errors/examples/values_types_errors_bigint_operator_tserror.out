@@ -1,0 +1,8 @@
+values_types_errors_bigint_operator_tserror.ts:3:10 - error TS2365: Operator '+' cannot be applied to types 'bigint' and 'number'.
+
+3   return balanceCents + feeCents;
+           ~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Found 1 error in values_types_errors_bigint_operator_tserror.ts:3
+

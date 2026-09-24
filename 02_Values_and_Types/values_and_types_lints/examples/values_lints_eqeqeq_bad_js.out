@@ -1,0 +1,5 @@
+{"stock":"0"}   sold out
+{"stock":""}    sold out
+{"stock":"12"}  in stock
+{"stock":null}  in stock
+{}              in stock

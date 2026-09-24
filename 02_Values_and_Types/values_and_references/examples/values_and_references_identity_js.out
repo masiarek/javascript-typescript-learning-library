@@ -1,0 +1,9 @@
+const a = { n: 1 }; const b = a;
+{ n: 1 } === { n: 1 }             false
+a === b                           true
+[1, 2] === [1, 2]                 false
+{ n: 1 } == { n: 1 }              false
+"milk" === "mi" + "lk"            true
+[a].includes({ n: 1 })            false
+new Set([a, b, { n: 1 }]).size    2
+isDeepStrictEqual(a, { n: 1 })    true

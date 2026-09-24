@@ -1,0 +1,8 @@
+$ cat order_number.mjs
+// Take the number out of an order label; this one has not been numbered yet.
+const label = "order #pending";
+const orderNumber = label.match(/\d+/)[0];
+console.log(`order number ${orderNumber}`);
+$ node order_number.mjs
+TypeError: Cannot read properties of null (reading '0')
+exit status: 1

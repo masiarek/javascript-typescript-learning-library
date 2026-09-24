@@ -1,0 +1,6 @@
+const a = { owner: "ana", items: ["milk"] };
+const c = { ...a }; c.owner = "ben"; c.items.push("eggs");
+  c === a               false
+  c.items === a.items   true
+  a.owner               "ana"
+  a.items               ["milk","eggs"]

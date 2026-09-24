@@ -1,0 +1,12 @@
+$ cat discontinue.mjs
+// Mark a product code as discontinued.
+const sku = "A-1999";
+sku.discontinued = true;
+console.log(sku.discontinued);
+$ node discontinue.mjs
+TypeError: Cannot create property 'discontinued' on string 'A-1999'
+exit status: 1
+$ cp discontinue.mjs discontinue.cjs
+$ node discontinue.cjs
+undefined
+exit status: 0

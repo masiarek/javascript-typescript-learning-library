@@ -1,0 +1,11 @@
+Symbol.for("id") === Symbol.for("id")           true
+Symbol.for("id") === Symbol("id")               false
+Object.getOwnPropertySymbols(order).length      1
+order[Symbol.for("id")]                         checked by Ada
+Symbol.keyFor(Symbol.for("id"))                 id
+Symbol.keyFor(Symbol("id"))                     undefined
+Symbol.keyFor(Symbol.iterator)                  undefined
+theirSymbol === Symbol                          false
+theirId === Symbol.for("id")                    true
+new WeakMap().set(Symbol("id"), "cached")       accepted
+new WeakMap().set(Symbol.for("id"), "cached")   TypeError: Invalid value used as weak map key

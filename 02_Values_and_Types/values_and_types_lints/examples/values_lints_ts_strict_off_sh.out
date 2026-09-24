@@ -1,0 +1,16 @@
+$ tsc --noEmit --pretty false values_lints_ts_strict_tserror.ts
+error TS5112: tsconfig.json is present but will not be loaded if files are specified on commandline. Use '--ignoreConfig' to skip this error.
+exit status: 1
+$ tsc --ignoreConfig --noEmit --pretty false --strict false values_lints_ts_strict_tserror.ts
+exit status: 0
+$ tsc --ignoreConfig --noEmit --pretty false values_lints_ts_strict_tserror.ts
+values_lints_ts_strict_tserror.ts(3,10): error TS18047: 'name' is possibly 'null'.
+exit status: 1
+$ tsc --ignoreConfig --noEmit --pretty false --strict false values_lints_ts_constructors_tserror.ts
+values_lints_ts_constructors_tserror.ts(2,18): error TS2350: Only a void function can be called with the 'new' keyword.
+values_lints_ts_constructors_tserror.ts(3,19): error TS2350: Only a void function can be called with the 'new' keyword.
+exit status: 1
+$ tsc --ignoreConfig --noEmit --pretty false values_lints_ts_constructors_tserror.ts
+values_lints_ts_constructors_tserror.ts(2,18): error TS7009: 'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+values_lints_ts_constructors_tserror.ts(3,19): error TS7009: 'new' expression, whose target lacks a construct signature, implicitly has an 'any' type.
+exit status: 1

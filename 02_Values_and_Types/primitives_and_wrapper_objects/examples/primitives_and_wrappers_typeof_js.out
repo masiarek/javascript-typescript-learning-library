@@ -1,0 +1,16 @@
+value               typeof    truthy   instanceof   === twin
+""                  string    false    false        true
+new String("")      object    true     true         false
+0                   number    false    false        true
+new Number(0)       object    true     true         false
+false               boolean   false    false        true
+new Boolean(false)  object    true     true         false
+
+typeof "abc"                          string
+typeof new String("abc")              object
+new String("a") === new String("a")   false
+new String("abc") == "abc"            true
+new String("abc") === "abc"           false
+new Boolean(false) ? 1 : 2            1
+"abc" instanceof String               false
+typeof String(42)                     string

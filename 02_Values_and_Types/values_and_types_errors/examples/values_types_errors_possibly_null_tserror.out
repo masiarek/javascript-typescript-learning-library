@@ -1,0 +1,8 @@
+values_types_errors_possibly_null_tserror.ts:4:29 - error TS18047: 'found' is possibly 'null'.
+
+4 console.log(`order number ${found[0]}`);
+                              ~~~~~
+
+
+Found 1 error in values_types_errors_possibly_null_tserror.ts:4
+

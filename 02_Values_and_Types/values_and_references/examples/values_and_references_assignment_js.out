@@ -1,0 +1,14 @@
+const a = { count: 1 }; const b = a; b.count = 2;
+  a.count   2
+  b.count   2
+  a === b   true
+let c = a; c = { count: 9 };
+  a.count   2
+  c.count   9
+  a === c   false
+const s = "milk"; const t = s; t[0] = "M";
+  throws    TypeError: Cannot assign to read only property '0' of string 'milk'
+  s         "milk"
+let u = s; u += "!";
+  s         "milk"
+  u         "milk!"

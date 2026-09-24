@@ -1,0 +1,2 @@
+primitives (7): 1999, "1999", 1999n, true, null, undefined, Symbol("sku")
+objects (5): [1999], { cents: 1999 }, () => 1999, new Date(0), new Number(1999)

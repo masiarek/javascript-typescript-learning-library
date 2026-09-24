@@ -1,0 +1,15 @@
+$ node values_lints_no_loss_of_precision_bad_js.js
+order 9007199254740992
+$ eslint --no-config-lookup --rule '{"no-loss-of-precision": "error"}' values_lints_no_loss_of_precision_bad_js.js
+
+values_lints_no_loss_of_precision_bad_js.js
+  2:24  error  This number literal will lose precision at runtime  no-loss-of-precision
+
+✖ 1 problem (1 error, 0 warnings)
+
+exit status: 1
+$ node values_lints_no_loss_of_precision_good_js.js
+order 9007199254740993
+order 9007199254740993
+$ eslint --no-config-lookup --rule '{"no-loss-of-precision": "error"}' values_lints_no_loss_of_precision_good_js.js
+exit status: 0

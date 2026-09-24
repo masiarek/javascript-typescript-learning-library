@@ -1,0 +1,18 @@
+check                   x = null          x = undefined     verdict
+x == null               true              true              alike
+x === null              true              false             differ
+x ?? "fallback"         'fallback'        'fallback'        alike
+x?.length               undefined         undefined         alike
+x.length                throws TypeError  throws TypeError  alike
+withDefault(x)          null              'fallback'        differ
+JSON.stringify({ x })   '{"x":null}'      '{}'              differ
+JSON.stringify([x])     '[null]'          '[null]'          alike
+typeof x                'object'          'undefined'       differ
+String(x)               'null'            'undefined'       differ
+
+null      == null  true
+undefined == null  true
+0         == null  false
+''        == null  false
+false     == null  false
+NaN       == null  false

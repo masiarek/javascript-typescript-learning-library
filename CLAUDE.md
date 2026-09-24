@@ -17,7 +17,8 @@ A JavaScript and TypeScript library in the same format as its siblings: one idea
 
 - Node: Homebrew `node` 25.2.1 at `/usr/local/opt/node/bin/node`; `node@20` (20.20.2) is first on PATH and is skipped by the runner (too old: no type stripping). CI uses Node 24 from `actions/setup-node`. Node 25.2.1 runs `.ts` files with no warning; it rejects `enum` with `ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX`.
 - TypeScript 7.0.2 (released 2026-07-08, the native compiler: `typescript` depends on one `@typescript/typescript-<os>-<cpu>` binary package per platform), pinned with `@types/node` 24.13.6 in `package-lock.json`. `npm ci` installs it; `node_modules/` is gitignored and excluded from MkDocs (every package README would otherwise become a page).
-- tsc 7 refuses a file list while a `tsconfig.json` is in the working directory (TS5112), so the runner writes a one-off tsconfig that `extends` the repo's, with an absolute `typeRoots`.
+- ESLint 10.11.0 pinned beside it (2026-09-23, for the `<topic>_lints` pages): core rules only, run as `eslint --no-config-lookup --rule '{...}' file.js` from a `.sh` driver, which strips the absolute path ESLint prints. typescript-eslint cannot run: it needs the TypeScript compiler API, and 7.0.2 has none.
+- tsc 7 refuses a file list while a `tsconfig.json` is in the working directory or any folder above it (TS5112) — so from anywhere in this repo — unless given `--ignoreConfig`. The runner therefore writes a one-off tsconfig that `extends` the repo's, with an absolute `typeRoots`; a driver that wants plain `tsc file.ts` passes `--ignoreConfig`.
 - A code span holding `|` inside a Markdown table keeps its escaping backslash in Python-Markdown; `tools/check_pages.py` writes such cells as `<code>…&#124;…</code>` (the Regex library's fix, 649c674).
 - Docker image `node:24-slim` (Node 24.21.0) is cached locally; the stub agents used it to check that Node 24 prints what 25.2.1 prints. Use it before recording a key that might differ.
 

@@ -1,0 +1,8 @@
+null             null
+[1999, 250]      array
+{ cents: 1999 }  object
+"1999"           string
+1999             number
+1999n            bigint
+undefined        undefined
+() => 1999       function

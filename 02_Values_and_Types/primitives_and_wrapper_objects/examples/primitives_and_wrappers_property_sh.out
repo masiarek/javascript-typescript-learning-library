@@ -1,0 +1,7 @@
+$ node note_sloppy.cjs
+sku.note is undefined
+exit status: 0
+
+$ node note_strict.mjs
+TypeError: Cannot create property 'note' on string 'SKU-1042'
+exit status: 1

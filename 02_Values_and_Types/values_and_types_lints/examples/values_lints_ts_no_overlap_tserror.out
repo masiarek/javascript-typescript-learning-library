@@ -1,0 +1,13 @@
+values_lints_ts_no_overlap_tserror.ts:3:51 - error TS2367: This comparison appears to be unintentional because the types '"bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined"' and '"strnig"' have no overlap.
+
+3 const textReadings = readings.filter((reading) => typeof reading === "strnig");
+                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+values_lints_ts_no_overlap_tserror.ts:6:17 - error TS2367: This comparison appears to be unintentional because the types 'string' and 'number' have no overlap.
+
+6 const soldOut = stock == 0;
+                  ~~~~~~~~~~
+
+
+Found 2 errors in the same file, starting at: values_lints_ts_no_overlap_tserror.ts:3
+
